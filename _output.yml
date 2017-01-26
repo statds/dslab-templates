@@ -1,0 +1,13 @@
+bookdown::html_document2:
+  keep_md: yes
+  css: css/datalab.css
+
+bookdown::pdf_document2:
+  toc: no
+  keep_tex: yes
+  includes:
+    in_header: latex/preamble.tex
+    # before_body: latex/before_body.tex
+    # after_body: latex/after_body.tex
+  latex_engine: pdflatex
+  citation_package: natbib

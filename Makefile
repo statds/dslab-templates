@@ -37,7 +37,7 @@ check:
 
 .PHONY: clean
 clean:
-	rm -rf .Rhistory *\#* .\#* *~
+	rm -rf *.aux, *.out *.log *.fls *.fdb_latexmk .Rhistory *\#* .\#* *~
 
 .PHONY: rmCache
 rmCache:

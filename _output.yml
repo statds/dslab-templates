@@ -1,10 +1,10 @@
 bookdown::html_document2:
-  keep_md: yes
+  keep_md: no
   css: css/datalab.css
 
 bookdown::pdf_document2:
   toc: no
-  keep_tex: yes
+  keep_tex: no
   includes:
     in_header: latex/preamble.tex
     # before_body: latex/before_body.tex

@@ -1,13 +1,16 @@
 ---
-title: "A Simple Template for Data Lab"
-subtitle: "possible subtitle goes here"
-author: Wenjie Wang
+title: "A Data Lab Project Template in R Markdown"
+# subtitle: "possible subtitle goes here"
+author: |
+  | Wenjie Wang
+  | wenjie.2.wang@uconn.edu
+  | Department of Statistics, University of Connecticut
 date: "`r format(Sys.time(), '%d %B %Y')`"
 documentclass: article
 papersize: letter
 fontsize: 11pt
 bibliography: template.bib
-biblio-style: asa
+biblio-style: datalab
 output:
   bookdown::pdf_document2
   bookdown::html_document2
@@ -24,39 +27,53 @@ pkgs <- c("ggplot2", "splines2")
 need.packages(pkgs)
 
 ## specify global chunk options
-knitr::opts_chunk$set(fig.width = 8, fig.height = 5,
-                      out.width = "85%", fig.align = "center")
+knitr::opts_chunk$set(fig.width = 7, fig.height = 4.5, dpi = 192,
+                      out.width = "80%", fig.align = "center")
 
 ```
 
 
 # Introduction {#sec:intro}
 
-This document serves as a template for data lab projects.  In this template, we
-review most of the basic syntax of writing a single **R** Markdown file with the
-power of **bookdown** [@xie2017bookdown] by examples. The motivation of setting
-up a template in **R** Markdown is due to its simple syntax and its flexible
-output format. Also, it is in favor of reproducible studies, which play
-increasingly important role in modern research.
+This document is designed as a template for data lab projects.  However, it can
+actually be used as one of general templates in **R Markdown** for a single
+document.
+
+
+The motivation of setting up a template in **R Markdown** is due to its simple
+syntax and flexible output format with the help of [**pandoc**][pandoc]. In
+addition, it is in favor of reproducible studies, which have been receiving
+increasing attention in modern research.
+
+
+Instead of providing a minimal but non-informative template framework, we review
+most of the basic syntax of writing a single **R Markdown** document with the
+power of **bookdown** [@xie2017bookdown] by examples. However, it is not
+intended for a tutorial of **R Markdown** or **bookdown** package.  Readers are
+encouraged to skim the pdf or html output, and have a more close look at the
+source document of this template directly.
 
 
 The rest of this project template is organized as follows.  In Section
-\@ref(sec:cross), we briefly discuss about the cross-referencing of **R**
-Markdown, which now has a better support from the **bookdown** package than
-**rmarkdown** [@allaire2016rmarkdown] package.  In Section \@ref(sec:math), we
-present the example of using mathematical environment for theorem, lemma, and
-definition, etc.  Some examples of inclusion of figures and tables into the
-project report in Section \@ref(sec:figure) and Section \@ref(sec:table).  In
-Section \@ref(sec:summary), we provide external resources for further reading.
+\@ref(sec:cross), we briefly discuss about the cross-referencing of **R
+Markdown**, which has a better support from the **bookdown** package
+[@xie2016bookdown] than **rmarkdown** package [@allaire2016rmarkdown].  In
+Section \@ref(sec:math), we present the example of using mathematical
+environment for theorem, lemma, and definition, etc.  Some examples of
+reproducing figures and inclusion of existing ones are given in Section
+\@ref(sec:figure).  Generation of tables is discussed in Section
+\@ref(sec:table).  At last but not least, we point out external resources for
+further reading and more advanced usage of **bookdown** in Section
+\@ref(sec:summary).
 
 
 # Cross-Reference by bookdown {#sec:cross}
 
 Cross-reference of mathematical equations, tables, and figures used to be a pain
-of using **Rmarkdown**. Usually extra package, such as **kfigr**
+of using **R markdown**. Usually extra package, such as **kfigr**
 [@koohafkan2015kfigr], and certain kind of extra labor was needed for a
-satisfactory cross-referencing.  Fortunately, **bookdown** package provides a
-much easier and consistent syntax for cross-referencing.
+automatic and satisfactory cross-referencing.  Fortunately, **bookdown** package
+provides a much easier and consistent syntax for cross-referencing.
 
 
 # Math Equations {#sec:math}
@@ -73,19 +90,29 @@ Eular's identity is given in Equation \@ref(eq:eular).
 \end{align}
 
 
-# Math Theorem  {#sec:theorem}
+# Math Theorem Environments  {#sec:theorem}
 
-The mathematical Theorem can be put inside `theorem` chunk followed by its
-label. For instance, the Theorem \@ref(thm:example) is an example Theorem.
+The mathematical theorem can be put inside `theorem` chunk followed by its
+label. For example, Central Limit Theorem (CLT) is presented in Theorem
+\@ref(thm:clt).
 
-```{theorem, example}
-This is an example Theorem.
+
+```{theorem, clt}
+**(Central Limit Theorem)** Let $X_1,\ldots,X_n$ be independent, identically
+distributed (i.i.d.) random variables with finite expectation $\mu$, and
+positive, finite variance $\sigma^2$, and set $S_n=X_1 + X_2 + \cdots + X_n$, $n
+\ge 1$. Then
+$$
+    \frac{\bar{S}_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
+    ~\mathrm{as}~n\rightarrow\infty.
+$$
 ```
 
-Table \@ref(tab:theorem-envs) summarized the available environment for
-mathematical theorem, lemma, definition, etc, and their label prefix for
-cross-reference.
+Table \@ref(tab:theorem-envs) summarized the available theorem environments for
+mathematical theorem, lemma, definition, etc, and their label prefix designed
+for cross-reference.
 
+<!-- source extracted from bookdown package  -->
 (ref:theorem-envs) Theorem environments in **bookdown**.
 
 ```{r theorem-envs, echo = FALSE}
@@ -98,21 +125,78 @@ knitr::kable(data.frame(
 ```
 
 
+The First Borel-Cantelli Lemma is given inside the `lemma` environment as shown
+in Lemma \@ref(lem:bc).
+
+```{lemma, bc}
+**(First Borel-Cantelli Lemma)** Let $\{A_n\}_{n \ge 1}$ be a sequence of events
+with
+$$
+    \sum_n P(A_n) < \infty.
+$$
+Then
+$$
+P(A_n~\mathrm{i.o.}) = P(\limsup\limits_{n\rightarrow\infty}) = 0.
+$$
+```
+
+The Definition \@ref(def:example) is an example definition of a good template
+just for demonstration.
+
+```{definition, example}
+This is a good template if readers are able to easily follow and write their own
+stories based on it.
+```
+
+
 # Figures {#sec:figure}
 
-Figures can be generated by the code chunk within the source document.
+Figures can be generated by the code chunk within the source document.  For
+example, the quadratic M-splines [@ramsay1988msplines] with three internal knots
+generated by **splines2** package [@wang2017splines2] are plotted by the
+following **R** code:
 
 <!-- caption of figure may be defined as follows: -->
-(ref:cap-plot1) Cubic M-spline Bases with three internal knots.
+(ref:cap-mSplines) Quadratic M-spline Bases with three internal knots.
 
-```{r plot1, echo = FALSE, fig.cap = "(ref:cap-plot1)"}
+```{r mSplines, echo = TRUE, fig.cap = "(ref:cap-mSplines)"}
 x <- seq.int(0, 1, 0.01)
 knots <- c(0.3, 0.5, 0.6)
-msMat <- mSpline(x, knots = knots, degree = 3, intercept = TRUE)
+msMat <- mSpline(x, knots = knots, degree = 2, intercept = TRUE)
 par(mar = c(2.5, 2.5, 0, 0), mgp = c(1.5, 0.5, 0))
 matplot(x, msMat, type = "l", ylab = "M-splines")
 abline(v = knots, lty = 2, col = "gray")
 ```
+
+The resulting plot is shown in Figure \@ref(fig:mSplines).
+
+It is possible that we may not be able to regenerate the plot we want from **R**
+code.  Instead of reproducing plots on the fly, we may also include an existing
+figure into the document by the function `knitr::include_graghics`. For
+instance, in the following code chunk, we first generate the plot of quadratic
+I-splines, save it under folder `figs`, and include it in the output by function
+`knitr::include_graghics`.
+
+(ref:cap-iSplines) Quadratic I-spline Bases with three internal knots.
+
+```{r iSplines, echo = TRUE, fig.cap = "(ref:cap-iSplines)", message = FALSE}
+## we generate the figure as below but not plot it out
+if (! dir.exists("figs")) dir.create("figs")
+png("figs/iSpline.png", width = 7, height = 4.5, units = "in", res = 192)
+isMat <- iSpline(x, knots = knots, degree = 2, intercept = TRUE)
+par(mar = c(2.5, 2.5, 0, 0), mgp = c(1.5, 0.5, 0))
+matplot(x, isMat, type = "l", ylab = "I-splines")
+abline(v = knots, lty = 2, col = "gray")
+foo <- dev.off()
+## include the figure generated
+knitr::include_graphics("figs/iSpline.png")
+```
+
+We may set the chunk option `echo = FALSE` so that the code chunk generating the
+plots are excluded from the output. Also, the chunk option `cache` can be set to
+be `TRUE` once the code chunk is settled down especially for possibly
+time-consuming code chunk.
+
 
 # Tables {#sec:table}
 
@@ -146,8 +230,9 @@ fabulous **knitr**, **Rmarkdown**, and **bookdown** packages.
 # Reference {-}
 
 
-[fig:foo]: figs/foo.png
-[rmarkdown]: https://CRAN.R-project.org/package=rmarkdown
-[kfigr]: https://CRAN.R-project.org/package=kfigr
 [bookdown]: https://CRAN.R-project.org/package=bookdown
+[fig:foo]: figs/foo.png
+[kfigr]: https://CRAN.R-project.org/package=kfigr
+[pandoc]: http://pandoc.org/
 [repo]: https://github.com/wenjie2wang/datalab-templates
+[rmarkdown]: https://CRAN.R-project.org/package=rmarkdown

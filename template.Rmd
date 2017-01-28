@@ -95,7 +95,7 @@ cross-referencing now.
 # Math Equations {#sec:math}
 
 The inline math expressions are quoted by `$` in the source document, which is
-consistent with the syclit of `r latex`. For instance, $x_i^2$, $\sin(x)$,
+consistent with the syntax of `r latex`. For instance, $x_i^2$, $\sin(x)$,
 $\theta$ are inline expressions. The equations can be simply quoted by `$$` if
 no cross-reference is needed, where regular `r latex` commands under math
 environment can be used.  For equations that need cross-referencing,
@@ -235,7 +235,7 @@ There are other `r proglang("R")` packages that can be of tremendous help in
 generating `r proglang("Markdown")` source of table and other `r proglang("R")`
 objects.  For example, package `r pkg("xtable")` [@dahl2016xtable] provides a
 more sophistic support for generation of table source for `r latex` and HTML;
-Package `r pkg("pander")` [@daroczi2015pander] provides unctions printing a
+Package `r pkg("pander")` [@daroczi2015pander] provides functions printing a
 variety of `r proglang("R")` objects in `r pkg("pandoc")`'s
 `r proglang("Markdown")`; Package `r latex` `r pkg("stargazer")`
 [@hlavac2015stargazer] produces `r latex` code, HTML code and SCII text for
@@ -256,13 +256,13 @@ reproduce this template without Python 3. -->
 
 ```{r pythonCode, eval = FALSE, engine = "python", comment = ">>> "}
 foo = "Hello " + "world!"
-print("'" + foo + "'" + ' has %d letters.' % len(foo))
+print("The legnth of '" + foo + "'" + ' is %d.' % len(foo))
 ```
 
 <!-- The expected result is given as follows -->
 
 ```python
->>>  'Hello world!' has 12 letters.
+>>>  The legnth of 'Hello world!' is 12.
 ```
 
 We may set the chunk option `eval = FALSE` if we only want to present the code
@@ -271,9 +271,9 @@ without evaluation.
 
 # Summary and Discussion {#sec:summary}
 
-In summary, we provided the project template and reviewed the basic syntax of
+In summary, we provided this project template and reviewed the basic syntax of
 writing a single `r proglang("R Markdown")` document with the power and love of
-`r pkg("bookdown")` at the same time.
+`r pkg("bookdown")`.
 
 
 @xie2017bookdown provided a thorough introduction to `r pkg("bookdown")`

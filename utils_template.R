@@ -19,3 +19,43 @@ need.packages <- function(pkg, ...)
     sapply(pkg, foo, character.only = TRUE)
     invisible(NULL)
 }
+
+
+##' Return formatted code for package names
+##'
+##' The function returns formatted code for possible LaTeX output.
+##'
+##' @param pkgName Name of the package.
+##' @param outFormat Optional output format.
+##' @param ... Other arguments for future usage.
+##' @return A character vector.
+pkg <- function(pkgName, outFormat, ...)
+{
+    if (missing(outFormat))
+        outFormat <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+    if (outFormat == "html")
+        return(paste0("**", pkgName, "**"))
+    else if (outFormat == "latex")
+        return(paste0("\\pkg{", pkgName, "}"))
+    else
+        warning("Not applicable.  Please double check the output.")
+    pkgName
+}
+
+
+##' Return Formatted Code for Programming Language
+##'
+##' The function returns formatted code for possible LaTeX output.
+##'
+##' @param langName Name of the programming language.
+##' @param outFormat Optional output format.
+##' @param ... Other arguments for future usage.
+##' @return A character vector.
+proglang <- function(langName, outFormat, ...)
+{
+    if (missing(outFormat))
+        outFormat <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+    if (outFormat == "latex")
+        return(paste0("\\proglang{", langName, "}"))
+    langName
+}

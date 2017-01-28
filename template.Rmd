@@ -1,22 +1,23 @@
 ---
 title: "A Data Lab Project Template in R Markdown"
 # subtitle: "possible subtitle goes here"
-author: |
-  | Wenjie Wang
-  | wenjie.2.wang@uconn.edu
-  | Department of Statistics, University of Connecticut
+author:
+  - Wenjie Wang^[<wenjie.2.wang@uconn.edu>; Ph.D. student at
+    Department of Statistics, University of Connecticut.]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 documentclass: article
 papersize: letter
 fontsize: 11pt
 bibliography: template.bib
 biblio-style: datalab
+keywords: Template, R Markdown, bookdown, Data Lab
 output:
   bookdown::pdf_document2
   bookdown::html_document2
 abstract: |
-    This is a good abstract.
-
+    This is a template mainly designed for data lab projects. In this template,
+    we review most common components in a single R Markdown document with the
+    power of **bookdown** package and demonstrate their basic usage by examples.
 ---
 
 
@@ -25,6 +26,13 @@ source("utils_template.R")
 ## specify the packages needed
 pkgs <- c("ggplot2", "splines2")
 need.packages(pkgs)
+
+## get output format in case something needs extra effort
+outFormat <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+## "latex" or "html"
+
+## for latex and html output
+latex <- ifelse(outFormat == 'html', 'LaTeX', '\\LaTeX\\')
 
 ## specify global chunk options
 knitr::opts_chunk$set(fig.width = 7, fig.height = 4.5, dpi = 192,
@@ -36,54 +44,62 @@ knitr::opts_chunk$set(fig.width = 7, fig.height = 4.5, dpi = 192,
 # Introduction {#sec:intro}
 
 This document is designed as a template for data lab projects.  However, it can
-actually be used as one of general templates in **R Markdown** for a single
-document.
+actually be used as one of general templates in `r proglang("R Markdown")` for a
+single document.
 
 
-The motivation of setting up a template in **R Markdown** is due to its simple
-syntax and flexible output format with the help of [**pandoc**][pandoc]. In
-addition, it is in favor of reproducible studies, which have been receiving
-increasing attention in modern research.
+The motivation of setting up a template in `r proglang("R Markdown")` is due to
+its simple syntax and flexible output format with the help
+of [`r pkg("pandoc")`][pandoc]. In addition, it is in favor of reproducible
+studies, which have been receiving increasing attention in modern research.
 
 
 Instead of providing a minimal but non-informative template framework, we review
-most of the basic syntax of writing a single **R Markdown** document with the
-power of **bookdown** [@xie2017bookdown] by examples. However, it is not
-intended for a tutorial of **R Markdown** or **bookdown** package.  Readers are
-encouraged to skim the pdf or html output, and have a more close look at the
-source document of this template directly.
+most of the basic syntax of writing a single `r proglang("R Markdown")` document
+with the power of `r pkg("bookdown")` [@xie2017bookdown] by examples. However,
+it is not intended for a tutorial of `r proglang("R Markdown")` or
+`r pkg("bookdown")` package.  Readers are encouraged to skim the PDF or HTML
+output, and have a more close look at the source document of this template
+directly.
 
 
-The rest of this project template is organized as follows.  In Section
-\@ref(sec:cross), we briefly discuss about the cross-referencing of **R
-Markdown**, which has a better support from the **bookdown** package
-[@xie2016bookdown] than **rmarkdown** package [@allaire2016rmarkdown].  In
-Section \@ref(sec:math), we present the example of using mathematical
-environment for theorem, lemma, and definition, etc.  Some examples of
-reproducing figures and inclusion of existing ones are given in Section
-\@ref(sec:figure).  Generation of tables is discussed in Section
-\@ref(sec:table).  At last but not least, we point out external resources for
-further reading and more advanced usage of **bookdown** in Section
-\@ref(sec:summary).
+The rest of this project template is organized as follows: In Section
+\@ref(sec:cross), we briefly discuss about the cross-referencing of
+`r proglang("R Markdown")`, which has a better support from
+package `r pkg("bookdown")` [@xie2016bookdown] than
+package `r pkg("rmarkdown")` [@allaire2016rmarkdown] now.
+In Section \@ref(sec:math) and Section \@ref(sec:theorem),
+we present the example of writing mathematical equations, and mathematical
+environment for theorem, lemma, and definition, etc., respectively.
+Some examples of reproducing figures and inclusion of existing ones
+are given in Section \@ref(sec:figure).
+The generation of table source and other `r proglang("R")` objects is discussed
+in Section \@ref(sec:table). A brief demonstration of code chunk is given in
+Section \@ref(sec:code). At last but not least, in Section \@ref(sec:summary),
+we point readers to some external resources for further reading and more
+advanced usage of `r pkg("bookdown")`.
 
 
 # Cross-Reference by bookdown {#sec:cross}
 
 Cross-reference of mathematical equations, tables, and figures used to be a pain
-of using **R markdown**. Usually extra package, such as **kfigr**
-[@koohafkan2015kfigr], and certain kind of extra labor was needed for a
-automatic and satisfactory cross-referencing.  Fortunately, **bookdown** package
-provides a much easier and consistent syntax for cross-referencing.
+of using `r proglang("R markdown")`. Usually extra package, such as
+`r pkg("kfigr")` [@koohafkan2015kfigr], and certain kind of extra labor was
+needed for a automatic and satisfactory cross-referencing.  Fortunately,
+package `r pkg("bookdown")` provides a much easier and consistent syntax for
+cross-referencing now.
 
 
 # Math Equations {#sec:math}
 
-The inline math expressions are quoted by `$`. For instance, $x_i^2$, $\sin(x)$,
+The inline math expressions are quoted by `$` in the source document, which is
+consistent with the syclit of `r latex`. For instance, $x_i^2$, $\sin(x)$,
 $\theta$ are inline expressions. The equations can be simply quoted by `$$` if
-no cross-reference is needed, where regular LaTeX commands under math
-environment can be used. For equations that need cross-referencing, LaTeX
-environments, such as `equation`, `align`, can be used directly. For example,
-Eular's identity is given in Equation \@ref(eq:eular).
+no cross-reference is needed, where regular `r latex` commands under math
+environment can be used.  For equations that need cross-referencing,
+`r latex` environments for mathematical equations, such as `equation`,
+`align`, can be used directly. For example,
+Equation \@ref(eq:eular) is the well-known Eular's identity.
 
 \begin{align}
   e^{i\theta} = \cos(\theta) + i \sin(\theta).  (\#eq:eular)
@@ -108,12 +124,12 @@ $$
 $$
 ```
 
-Table \@ref(tab:theorem-envs) summarized the available theorem environments for
-mathematical theorem, lemma, definition, etc, and their label prefix designed
-for cross-reference.
+All the available theorem environments for mathematical theorem, lemma,
+definition, etc, and their label prefix designed for cross-reference are
+summarized in Table \@ref(tab:theorem-envs).
 
 <!-- source extracted from bookdown package  -->
-(ref:theorem-envs) Theorem environments in **bookdown**.
+(ref:theorem-envs) Theorem environments in `r pkg("bookdown")`.
 
 ```{r theorem-envs, echo = FALSE}
 knitr::kable(data.frame(
@@ -153,8 +169,9 @@ stories based on it.
 
 Figures can be generated by the code chunk within the source document.  For
 example, the quadratic M-splines [@ramsay1988msplines] with three internal knots
-generated by **splines2** package [@wang2017splines2] are plotted by the
-following **R** code:
+generated by `r pkg("splines2")` package [@wang2017splines2] are plotted by the
+following `r proglang("R")` code chunk. The resulting plot is shown in Figure
+\@ref(fig:mSplines).
 
 <!-- caption of figure may be defined as follows: -->
 (ref:cap-mSplines) Quadratic M-spline Bases with three internal knots.
@@ -168,18 +185,18 @@ matplot(x, msMat, type = "l", ylab = "M-splines")
 abline(v = knots, lty = 2, col = "gray")
 ```
 
-The resulting plot is shown in Figure \@ref(fig:mSplines).
 
-It is possible that we may not be able to regenerate the plot we want from **R**
-code.  Instead of reproducing plots on the fly, we may also include an existing
-figure into the document by the function `knitr::include_graghics`. For
-instance, in the following code chunk, we first generate the plot of quadratic
-I-splines, save it under folder `figs`, and include it in the output by function
-`knitr::include_graghics`.
+It is possible that we may not be able to regenerate the plot we want from
+`r proglang("R")` code.  Instead of reproducing plots on the fly, we may also
+include an existing figure into the document by the function
+`knitr::include_graghics`. Suppose we have already generated a quadratic
+I-splines by function `splines2::iSpline` and saved the plot under directory
+`figs`. Then we may skip the regeneration step and include the existing plot
+directly as follows:
 
 (ref:cap-iSplines) Quadratic I-spline Bases with three internal knots.
 
-```{r iSplines, echo = TRUE, fig.cap = "(ref:cap-iSplines)", message = FALSE}
+```{r iSplines, echo = 10, fig.cap = "(ref:cap-iSplines)", message = FALSE}
 ## we generate the figure as below but not plot it out
 if (! dir.exists("figs")) dir.create("figs")
 png("figs/iSpline.png", width = 7, height = 4.5, units = "in", res = 192)
@@ -194,45 +211,83 @@ knitr::include_graphics("figs/iSpline.png")
 
 We may set the chunk option `echo = FALSE` so that the code chunk generating the
 plots are excluded from the output. Also, the chunk option `cache` can be set to
-be `TRUE` once the code chunk is settled down especially for possibly
-time-consuming code chunk.
+be `TRUE` for time-consuming code chunk once the code chunk is unlikely to be
+modified.
 
 
-# Tables {#sec:table}
+# Tables and Other R objects {#sec:table}
 
-Similarly, tables can be generated by the code chunk within the source document.
+Tables can be similarly generated by the code chunk within the source document.
+Table \@ref(tab:theorem-envs) was in fact generated by function `knitr::kable`.
+Another simple example of table generation by `knitr::kable` is given in the
+follows code chunk. Table \@ref(tab:iris) is the resulting table.
+
+(ref:iris) First six rows of the iris data in package `r pkg("datasets")`.
+
+```{r iris, }
+knitr::kable(head(iris), booktabs = TRUE,
+             caption = '(ref:iris)')
+```
+
+There are other `r proglang("R")` packages that can be of tremendous help in
+generating `r proglang("Markdown")` source of table and other `r proglang("R")`
+objects.  For example, package `r pkg("xtable")` [@dahl2016xtable] provides a
+more sophistic support for generation of table source for `r latex` and HTML;
+Package `r pkg("pander")` [@daroczi2015pander] provides unctions printing a
+variety of `r proglang("R")` objects in `r pkg("pandoc")`'s
+`r proglang("Markdown")`; Package `r latex` `r pkg("stargazer")`
+[@hlavac2015stargazer] produces `r latex` code, HTML code and SCII text for
+well-formatted tables for results from regression models.
+See [CRAN task view][taskView] on reproducible research for a more comprehensive
+package list.  .
 
 
 # Code Chunk {#sec:code}
 
-The engine of code chunk should be specified via the option `engine`.
+In addition to `r proglang("R")`, the code chunk can be written in a variety of
+other languages, such as `r proglang("Bash")`, `r proglang("Python")`,
+`r proglang("SAS")`, etc. by specifying the chunk option `engine`.
+The following code chunk is one toy example written in `r proglang("Python 3")`.
 
-```{r pythonCode, engine = "python"}
-foo = "Hello " + "world! "
-print(len(foo))
+```{r pythonCode, eval = TRUE, engine = "python", comment = ">>> "}
+foo = "Hello " + "world!"
+print("'" + foo + "'" + ' has %d letters.' % len(foo))
 ```
+
+We may set the chunk option `eval = FALSE` if we only want to present the code
+without evaluation.
+
 
 # Summary and Discussion {#sec:summary}
 
-In summary, we provide the project template and reviewed the basic syntax of
-**bookdown** documents.
+In summary, we provided the project template and reviewed the basic syntax of
+writing a single `r proglang("R Markdown")` document with the power and love of
+`r pkg("bookdown")` at the same time.
 
-The templates and specific samples are available at the GitHub repository
-[datalab-tempaltes][repo].
+
+@xie2017bookdown provided a thorough introduction to `r pkg("bookdown")`
+including more advanced components, such as HTML widgets, and their usage.
+What's more, the [manual][pandocManual] of `r pkg("Pandoc")` gives all the
+available options that can be specified through `r proglang("YAML")` metadata
+section.
+
+
+The template source and other associated files, such as BibTeX file, are
+available at the GitHub repository named [datalab-templates][repo].
 
 
 # Acknowledgment {-}
 
 We would like to thank Yihui and all the other authors, contributors for the
-fabulous **knitr**, **Rmarkdown**, and **bookdown** packages.
+fabulous `r pkg("knitr")`, `r pkg("rmarkdown")`, and `r pkg("bookdown")`
+packages. It would be also impossible for template to work without those
+fantastic open-source software: `r proglang("R")`, `r pkg("pandoc")`, etc.
 
 
 # Reference {-}
 
 
-[bookdown]: https://CRAN.R-project.org/package=bookdown
-[fig:foo]: figs/foo.png
-[kfigr]: https://CRAN.R-project.org/package=kfigr
 [pandoc]: http://pandoc.org/
+[pandocManual]: http://pandoc.org/MANUAL.html
 [repo]: https://github.com/wenjie2wang/datalab-templates
-[rmarkdown]: https://CRAN.R-project.org/package=rmarkdown
+[taskView]: https://cran.r-project.org/web/views/ReproducibleResearch.html

@@ -22,9 +22,11 @@ abstract: |
 
 
 ```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+## some utility functions, see the source code for details
 source("utils_template.R")
+
 ## specify the packages needed
-pkgs <- c("ggplot2", "splines2")
+pkgs <- c("ggplot2", "splines2")        # ggplot2 is not used though
 need.packages(pkgs)
 
 ## get output format in case something needs extra effort
@@ -249,9 +251,18 @@ other languages, such as `r proglang("Bash")`, `r proglang("Python")`,
 `r proglang("SAS")`, etc. by specifying the chunk option `engine`.
 The following code chunk is one toy example written in `r proglang("Python 3")`.
 
-```{r pythonCode, eval = TRUE, engine = "python", comment = ">>> "}
+<!-- note that we actually set eval to be FALSE here so that readers are able to
+reproduce this template without Python 3. -->
+
+```{r pythonCode, eval = FALSE, engine = "python", comment = ">>> "}
 foo = "Hello " + "world!"
 print("'" + foo + "'" + ' has %d letters.' % len(foo))
+```
+
+<!-- The expected result is given as follows -->
+
+```python
+>>>  'Hello world!' has 12 letters.
 ```
 
 We may set the chunk option `eval = FALSE` if we only want to present the code

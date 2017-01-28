@@ -152,7 +152,7 @@ $(document).ready(function () {
 </div>
 <div id="sec:math" class="section level1">
 <h1><span class="header-section-number">3</span> Math Equations</h1>
-<p>The inline math expressions are quoted by <code>$</code> in the source document, which is consistent with the syclit of LaTeX. For instance, <span class="math inline">\(x_i^2\)</span>, <span class="math inline">\(\sin(x)\)</span>, <span class="math inline">\(\theta\)</span> are inline expressions. The equations can be simply quoted by <code>$$</code> if no cross-reference is needed, where regular LaTeX commands under math environment can be used. For equations that need cross-referencing, LaTeX environments for mathematical equations, such as <code>equation</code>, <code>align</code>, can be used directly. For example, Equation <a href="#eq:eular">(3.1)</a> is the well-known Eular’s identity.</p>
+<p>The inline math expressions are quoted by <code>$</code> in the source document, which is consistent with the syntax of LaTeX. For instance, <span class="math inline">\(x_i^2\)</span>, <span class="math inline">\(\sin(x)\)</span>, <span class="math inline">\(\theta\)</span> are inline expressions. The equations can be simply quoted by <code>$$</code> if no cross-reference is needed, where regular LaTeX commands under math environment can be used. For equations that need cross-referencing, LaTeX environments for mathematical equations, such as <code>equation</code>, <code>align</code>, can be used directly. For example, Equation <a href="#eq:eular">(3.1)</a> is the well-known Eular’s identity.</p>
 <span class="math display" id="eq:eular">\[\begin{align}
   e^{i\theta} = \cos(\theta) + i \sin(\theta).  \tag{3.1}
 \end{align}\]</span>
@@ -320,19 +320,22 @@ Figure 5.2: Quadratic I-spline Bases with three internal knots.
 </tr>
 </tbody>
 </table>
-<p>There are other R packages that can be of tremendous help in generating Markdown source of table and other R objects. For example, package <strong>xtable</strong> <span class="citation">(Dahl 2016)</span> provides a more sophistic support for generation of table source for LaTeX and HTML; Package <strong>pander</strong> <span class="citation">(Daróczi and Tsegelskyi 2015)</span> provides unctions printing a variety of R objects in <strong>pandoc</strong>’s Markdown; Package LaTeX <strong>stargazer</strong> <span class="citation">(Hlavac 2015)</span> produces LaTeX code, HTML code and SCII text for well-formatted tables for results from regression models. See <a href="https://cran.r-project.org/web/views/ReproducibleResearch.html">CRAN task view</a> on reproducible research for a more comprehensive package list. .</p>
+<p>There are other R packages that can be of tremendous help in generating Markdown source of table and other R objects. For example, package <strong>xtable</strong> <span class="citation">(Dahl 2016)</span> provides a more sophistic support for generation of table source for LaTeX and HTML; Package <strong>pander</strong> <span class="citation">(Daróczi and Tsegelskyi 2015)</span> provides functions printing a variety of R objects in <strong>pandoc</strong>’s Markdown; Package LaTeX <strong>stargazer</strong> <span class="citation">(Hlavac 2015)</span> produces LaTeX code, HTML code and SCII text for well-formatted tables for results from regression models. See <a href="https://cran.r-project.org/web/views/ReproducibleResearch.html">CRAN task view</a> on reproducible research for a more comprehensive package list. .</p>
 </div>
 <div id="sec:code" class="section level1">
 <h1><span class="header-section-number">7</span> Code Chunk</h1>
 <p>In addition to R, the code chunk can be written in a variety of other languages, such as Bash, Python, SAS, etc. by specifying the chunk option <code>engine</code>. The following code chunk is one toy example written in Python 3.</p>
+<!-- note that we actually set eval to be FALSE here so that readers are able to
+reproduce this template without Python 3. -->
 <pre class="python"><code>foo = &quot;Hello &quot; + &quot;world!&quot;
-print(&quot;'&quot; + foo + &quot;'&quot; + ' has %d letters.' % len(foo))</code></pre>
-<pre><code>&gt;&gt;&gt;  'Hello world!' has 12 letters.</code></pre>
+print(&quot;The legnth of '&quot; + foo + &quot;'&quot; + ' is %d.' % len(foo))</code></pre>
+<!-- The expected result is given as follows -->
+<pre class="python"><code>&gt;&gt;&gt;  The legnth of 'Hello world!' is 12.</code></pre>
 <p>We may set the chunk option <code>eval = FALSE</code> if we only want to present the code without evaluation.</p>
 </div>
 <div id="sec:summary" class="section level1">
 <h1><span class="header-section-number">8</span> Summary and Discussion</h1>
-<p>In summary, we provided the project template and reviewed the basic syntax of writing a single R Markdown document with the power and love of <strong>bookdown</strong> at the same time.</p>
+<p>In summary, we provided this project template and reviewed the basic syntax of writing a single R Markdown document with the power and love of <strong>bookdown</strong>.</p>
 <p><span class="citation">Xie (2017)</span> provided a thorough introduction to <strong>bookdown</strong> including more advanced components, such as HTML widgets, and their usage. What’s more, the <a href="http://pandoc.org/MANUAL.html">manual</a> of <strong>Pandoc</strong> gives all the available options that can be specified through YAML metadata section.</p>
 <p>The template source and other associated files, such as BibTeX file, are available at the GitHub repository named <a href="https://github.com/wenjie2wang/datalab-templates">datalab-templates</a>.</p>
 </div>

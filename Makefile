@@ -1,6 +1,9 @@
 ## define the name of source files as below
 rmd_source := template.Rmd
 
+## preamble in .tex under directory latex
+preamble := $(wildcard latex/*.tex)
+
 ## corresponding output names
 pdf_out := $(patsubst %.Rmd,%.pdf,$(rmd_source))
 html_out := $(patsubst %.Rmd,%.html,$(rmd_source))
@@ -12,7 +15,7 @@ all: $(pdf_out) $(html_out)
 .PHONY: pdf
 pdf: $(pdf_out)
 
-$(pdf_out): $(rmd_source) _output.yml
+$(pdf_out): $(rmd_source) _output.yml $(preamble)
 	@make -s check
 	@echo "compiling to pdf file..."
 	@Rscript -e \
@@ -24,7 +27,7 @@ html: $(html_out)
 
 $(html_out): $(rmd_source) _output.yml
 	@make -s check
-	@echo "compiling to pdf file..."
+	@echo "compiling to html file..."
 	@Rscript -e \
 	"rmarkdown::render('$(rmd_source)', 'bookdown::html_document2')" \
 	--vanilla

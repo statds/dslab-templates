@@ -1,4 +1,41 @@
 Data Lab Project Templates
 ==============================
 
-The repository provides templates for data lab projects.
+The repository provides R Markdown templates for data lab projects.
+
+
+## Get Started
+
+We may download and unpack the [ZIP][zip] file of the repository, then compile
+the source document with the help of Rstudio (by clicking the botton 'knit'
+manually).
+
+Alternatively (and more efficiently), we may clone the repository and let the
+Makefile help reproduce the output as follows:
+
+```bash
+git clone https://github.com/wenjie2wang/datalab-templates.git
+cd datalab-templates
+make       # for output in pdf and html
+```
+
+The available targets in the Makefile include
+
+- `all`, default target for output in PDF and HTML.
+- `pdf` for PDF output only
+- `html`  for HTML output only
+- `clean` for cleaning some temporary files such as `*.log` and `*.aux`.
+- `rmCache` for cleaning cache files, which can be crucial if we modified
+    code chunk for a new evaluation.
+
+
+## Output Preview
+
+The output of the templates in PDF and HTML are available for preview.
+
+- [PDF](https://wenjie-stat.me/datalab-templates/template.pdf)
+- [HTML](https://wenjie-stat.me/datalab-templates)
+
+
+
+[zip]: https://github.com/wenjie2wang/datalab-templates/archive/master.zip

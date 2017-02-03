@@ -14,7 +14,7 @@ need.packages <- function(pkg, ...)
 {
     new.pkg <- pkg[! (pkg %in% installed.packages()[, "Package"])]
     if (length(new.pkg))
-        install.packages(new.pkg)
+        install.packages(new.pkg, repos = "https://cloud.r-project.org")
     foo <- function(a, ...) suppressMessages(require(a, ...))
     sapply(pkg, foo, character.only = TRUE)
     invisible(NULL)

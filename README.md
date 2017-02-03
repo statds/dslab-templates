@@ -1,7 +1,7 @@
-Data Lab Project Templates
+Data Science Lab Project Templates
 ==============================
 
-The repository provides R Markdown templates for data lab projects.
+The repository provides R Markdown templates for data science lab projects.
 
 
 ## Get Started

@@ -8,6 +8,9 @@ preamble := $(wildcard latex/*.tex)
 pdf_out := $(patsubst %.Rmd,%.pdf,$(rmd_source))
 html_out := $(patsubst %.Rmd,%.html,$(rmd_source))
 
+## CRAN mirror
+repos := https://cloud.r-project.org
+
 
 .PHONY: all
 all: $(pdf_out) $(html_out)
@@ -36,7 +39,8 @@ $(html_out): $(rmd_source) _output.yml
 check:
 	@Rscript -e \
 	"foo <- 'bookdown' %in% installed.packages()[, 'Package'];" \
-	-e "if (! foo) install.packages('bookdown')" --vanilla
+	-e "if (! foo) install.packages('bookdown', repos = '$(repos)')" \
+	--vanilla
 
 .PHONY: clean
 clean:

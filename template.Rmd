@@ -27,7 +27,7 @@ abstract: |
 source("utils_template.R")
 
 ## specify the packages needed
-pkgs <- c("ggplot2", "splines2")        # ggplot2 is not used though
+pkgs <- c("splines2", "DT", "webshot")
 need.packages(pkgs)
 
 ## get output format in case something needs extra effort
@@ -35,10 +35,12 @@ outFormat <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 ## "latex" or "html"
 
 ## for latex and html output
-latex <- ifelse(outFormat == 'html', 'LaTeX', '\\LaTeX\\')
+isHtml <- identical(outFormat, "html")
+isLatex <- identical(outFormat, "latex")
+latex <- ifelse(isLatex, '\\LaTeX\\', 'LaTeX')
 
 ## specify global chunk options
-knitr::opts_chunk$set(fig.width = 7, fig.height = 4.5, dpi = 192,
+knitr::opts_chunk$set(fig.width = 6, fig.height = 5, dpi = 300,
                       out.width = "80%", fig.align = "center")
 
 ```
@@ -223,7 +225,7 @@ given in the following code chunk. Table \@ref(tab:iris) is the resulting table.
 
 (ref:iris) First six rows of the iris data in package `r pkg("datasets")`.
 
-```{r iris, }
+```{r iris}
 knitr::kable(head(iris), booktabs = TRUE,
              caption = '(ref:iris)')
 ```
@@ -265,6 +267,47 @@ We may set the chunk option `eval = FALSE` if we only want to present the code
 without evaluation.
 
 
+# Shiny Apps {#shinyapp}
+
+Package `r pkg("shiny")` [@chang2017shiny] is a great tool providing readers
+with an interactive way to explore data and results.  We may easily build Shiny
+applications on our own, deploy, and share it online at [shinyapps.io][shiny.io]
+by package `r pkg("rsconnect")` [@allaire2016rsconnect]. In addition to building
+regular applications by `r pkg("Shiny")`, package `r pkg("miniUI")`
+[@cheng2016miniUI] provides layout function designed for Shiny applications with
+appropriate size on small screens.
+
+
+We may embed Shiny applications in the document by `knitr::include_app`, which
+is mainly designed for HTML output.  For PDF output, a screenshot taken by
+package `r pkg("webshot")` [@chang2016webshot] will be embedded instead.
+`r pkg("webshot")` provides argument `zoom` for a possible high resolution
+screenshot.  (However, if the resolution is still not satisfactory, we may take
+a screenshot and include it manually by `knitr::include_graphics`.)
+
+
+An example Shiny application visualizing different kind of spline bases is given
+in Figure `r ifelse(isLatex, '\\@ref(fig:miniappPdf)', '\\@ref(fig:miniapp)')`.
+
+
+(ref:cap-miniapp) An example Shiny app visualizing different spline bases
+available at <https://wenjie-stat.shinyapps.io/minisplines2>.
+
+
+```{r miniapp, eval = isHtml, fig.cap = "(ref:cap-miniapp)", screenshot.opts = list(delay = 20, zoom = 2)}
+knitr::include_app("https://wenjie-stat.shinyapps.io/minisplines2/", "600px")
+```
+
+<!-- 'zoom = 2' somehow produced small plot on upper left corner; 'zoom = 1'
+gave screenshot of poor resolution.  So manually include screenshot for pdf
+output instead. Please consider contribute to it if you have a better
+solution. -->
+
+```{r miniappPdf, echo = FALSE, eval = isLatex, fig.cap = "(ref:cap-miniapp)"}
+knitr::include_graphics("figs/webshot_miniSplines2.png")
+```
+
+
 # Summary and Discussion {#sec:summary}
 
 In summary, we provided this project template and reviewed the basic syntax of
@@ -298,3 +341,5 @@ fantastic open-source software: `r proglang("R")`, `r pkg("pandoc")`, etc.
 [pandocManual]: http://pandoc.org/MANUAL.html
 [repo]: https://github.com/wenjie2wang/datalab-templates
 [taskView]: https://cran.r-project.org/web/views/ReproducibleResearch.html
+[shiny.io]: https://www.shinyapps.io/
+[wenjie-stat.shinyapps]: https://wwenjie-stat.shinyapps.io/minisplines2

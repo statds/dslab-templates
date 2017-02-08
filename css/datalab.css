@@ -1,3 +1,3 @@
-.title.toc-ignore, .subtitle, .author, .date, .figure {
+.title.toc-ignore, .subtitle, .author, .date, .figure, caption {
     text-align: center;
 }

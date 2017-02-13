@@ -33,9 +33,9 @@ The available targets in the Makefile include
 
 The output of the templates in PDF and HTML are available for preview.
 
-- [PDF](https://wenjie-stat.me/datalab-templates/template.pdf)
-- [HTML](https://wenjie-stat.me/datalab-templates)
+- [PDF](https://statds.github.io/dslab-templates/template.pdf)
+- [HTML](https://statds.github.io/dslab-templates/)
 
 
 
-[zip]: https://github.com/wenjie2wang/datalab-templates/archive/master.zip
+[zip]: https://github.com/statds/dslab-templates/archive/master.zip

@@ -299,7 +299,7 @@ in Figure `r ifelse(isLatex, '\\@ref(fig:mapPdf)', '\\@ref(fig:map)')`.
 leaflet(width = 900, height = 500) %>% addTiles() %>%
     setView(- 72.251113, 41.810757, zoom = 17) %>%
     addPopups(- 72.251113, 41.810757,
-p              '<b>Department of Statistics, UConn</b>')
+              '<b>Department of Statistics, UConn</b>')
 ```
 
 <!-- For pdf output, PhantomJS and the R package webshot is needed. So we

@@ -39,4 +39,4 @@ The output of the templates in PDF and HTML are available for preview.
 
 
 [zip]: https://github.com/statds/dslab-templates/archive/master.zip
-[rstudo]: https://www.rstudio.com/
+[rstudio]: https://www.rstudio.com/

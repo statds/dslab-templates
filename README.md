@@ -4,18 +4,18 @@ Data Science Lab Project Templates
 The repository provides R Markdown templates for data science lab projects.
 
 
-## Get Started
+## Getting Started
 
 We may download and unpack the [ZIP][zip] file of the repository, then compile
-the source document with the help of Rstudio (by clicking the botton 'knit'
-manually).
+the source document with the help of [RStudio][rstudio] (by clicking the botton
+'knit' manually).
 
 Alternatively (and more efficiently), we may clone the repository and let the
 Makefile help reproduce the output as follows:
 
 ```bash
-git clone https://github.com/wenjie2wang/datalab-templates.git
-cd datalab-templates
+git clone https://github.com/statds/dslab-templates.git
+cd dslab-templates
 make       # for output in pdf and html
 ```
 
@@ -39,3 +39,4 @@ The output of the templates in PDF and HTML are available for preview.
 
 
 [zip]: https://github.com/statds/dslab-templates/archive/master.zip
+[rstudo]: https://www.rstudio.com/

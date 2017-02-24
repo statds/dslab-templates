@@ -389,7 +389,7 @@ metadata section.
 
 The template source and other associated files, such as BibTeX and CSS file, are
 available at our GitHub repository
-*datalab-templates*: <https://github.com/wenjie2wang/datalab-templates>.
+*datalab-templates*: <https://github.com/statds/dslab-templates>.
 
 
 # Acknowledgment {-}

@@ -7,11 +7,11 @@ The repository provides R Markdown templates for data science lab projects.
 ## Getting Started
 
 We may download and unpack the [ZIP][zip] file of the repository, then compile
-the source document with the help of [RStudio][rstudio] (by clicking the botton
-'knit' manually).
+the source document within [RStudio][rstudio] (by clicking the button *knit* or
+hitting the shortcut *Ctrl+Shift+K*).
 
-Alternatively (and more efficiently), we may clone the repository and let the
-Makefile help reproduce the output as follows:
+Alternatively (and probably more efficiently), we may clone the repository and
+let the Makefile help reproduce the output as follows:
 
 ```bash
 git clone https://github.com/statds/dslab-templates.git

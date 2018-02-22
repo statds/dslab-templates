@@ -32,7 +32,13 @@ need.packages <- function(pkg, ...)
 pkg <- function(pkgName, outFormat, ...)
 {
     if (missing(outFormat))
-        outFormat <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+        outFormat <- if (knitr::is_html_output()) {
+                         "html"
+                     } else if (knitr::is_latex_output()) {
+                         "latex"
+                     } else {
+                         knitr::opts_knit$get("rmarkdown.pandoc.to")
+                     }
     if (outFormat == "html")
         return(paste0("**", pkgName, "**"))
     else if (outFormat == "latex")
@@ -54,7 +60,10 @@ pkg <- function(pkgName, outFormat, ...)
 proglang <- function(langName, outFormat, ...)
 {
     if (missing(outFormat))
-        outFormat <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+        outFormat <- if (knitr::is_latex_output())
+                         "latex"
+                     else
+                         knitr::opts_knit$get("rmarkdown.pandoc.to")
     if (outFormat == "latex")
         return(paste0("\\proglang{", langName, "}"))
     langName

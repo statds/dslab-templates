@@ -9,7 +9,7 @@ documentclass: article
 papersize: letter
 fontsize: 11pt
 bibliography: template.bib
-biblio-style: datalab
+biblio-style: asa
 keywords: Template, R Markdown, bookdown, Data Lab
 # keywords set in YAML header here only go to the properties of the PDF output
 # the keywords that appear in PDF output are set in latex/before_body.tex

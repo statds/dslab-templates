@@ -1,56 +1,56 @@
-%% =============================================================================
-%% This is a BibTeX style file for data lab projects.
 %%
-%% Compared with asa.bst, it supports possible DOI (Digital object identifier)
-%% information for a permanent and unambiguous identification. See ENTRY for
-%% details.
+%% This is file `asa.bst',
+%% generated with the docstrip utility.
 %%
-%% The file is modified based on asa.bst,
+%% The original source files were:
+%%
+%% merlin.mbs  (with options: `,ay,nat,nm-rev,ed-rev,nmdash,dt-beg,yr-par,note-yr,tit-qq,atit-u,thtit-a,vnum-x,volp-com,pp-last,add-pub,pre-pub,edpar,edby,edbyx,blk-com,pp,ed,abr,ednx,ord,em-it,nfss')
+%% ----------------------------------------
 %% *** BibTeX Style for ASA Journals ***
-%% (by Brett Presnell, 24 August 1998)
-%%
-%%-------------------------------------------------------------------
-%% The original source file contains the following version information:
-%% \ProvidesFile{merlin.mbs}[1998/02/25 3.85a (PWD)]
-%%
-%% NOTICE:
-%% This file may be used for non-profit purposes.
-%% It may not be distributed in exchange for money,
-%%   other than distribution costs.
-%%
-%% The author provides it `as is' and does not guarantee it in any way.
-%%
-%%-------------------------------------------------------------------
-%%   For use with BibTeX version 0.99a or later
-%%-------------------------------------------------------------------
-%% This bibliography style file is intended for texts in ENGLISH
-%% This is an author-year citation style bibliography. As such, it is
-%% non-standard LaTeX, and requires a special package file to function properly.
-%% Such a package is    natbib.sty   by Patrick W. Daly
-%% The form of the \bibitem entries is
-%%   \bibitem[Jones et al.(1990)]{key}...
-%%   \bibitem[Jones et al.(1990)Jones, Baker, and Smith]{key}...
-%% The essential feature is that the label (the part in brackets) consists
-%% of the author names, as they should appear in the citation, with the year
-%% in parentheses following. There must be no space before the opening
-%% parenthesis!
-%% With natbib v5.3, a full list of authors may also follow the year.
-%% In natbib.sty, it is possible to define the type of enclosures that is
-%% really wanted (brackets or parentheses), but in either case, there must
-%% be parentheses in the label.
-%%
-%% The \cite command functions as follows:
-%%   \citet{key} ==>>                Jones et al. (1990)
-%%   \citet*{key} ==>>               Jones, Baker, and Smith (1990)
-%%   \citep{key} ==>>                (Jones et al., 1990)
-%%   \citep*{key} ==>>               (Jones, Baker, and Smith, 1990)
-%%   \citep[chap. 2]{key} ==>>       (Jones et al., 1990, chap. 2)
-%%   \citep[e.g.][]{key} ==>>        (e.g. Jones et al., 1990)
-%%   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
-%%   \citeauthor{key} ==>>           Jones et al.
-%%   \citeauthor*{key} ==>>          Jones, Baker, and Smith
-%%   \citeyear{key} ==>>             1990
-%%---------------------------------------------------------------------
+%% (Brett Presnell, 24 August 1998)
+%% 
+ %-------------------------------------------------------------------
+ % The original source file contains the following version information:
+ % \ProvidesFile{merlin.mbs}[1998/02/25 3.85a (PWD)]
+ %
+ % NOTICE:
+ % This file may be used for non-profit purposes.
+ % It may not be distributed in exchange for money,
+ %   other than distribution costs.
+ %
+ % The author provides it `as is' and does not guarantee it in any way.
+ %
+ % Copyright (C) 1994-98 Patrick W. Daly
+ %-------------------------------------------------------------------
+ %   For use with BibTeX version 0.99a or later
+ %-------------------------------------------------------------------
+ % This bibliography style file is intended for texts in ENGLISH
+ % This is an author-year citation style bibliography. As such, it is
+ % non-standard LaTeX, and requires a special package file to function properly.
+ % Such a package is    natbib.sty   by Patrick W. Daly
+ % The form of the \bibitem entries is
+ %   \bibitem[Jones et al.(1990)]{key}...
+ %   \bibitem[Jones et al.(1990)Jones, Baker, and Smith]{key}...
+ % The essential feature is that the label (the part in brackets) consists
+ % of the author names, as they should appear in the citation, with the year
+ % in parentheses following. There must be no space before the opening
+ % parenthesis!
+ % With natbib v5.3, a full list of authors may also follow the year.
+ % In natbib.sty, it is possible to define the type of enclosures that is
+ % really wanted (brackets or parentheses), but in either case, there must
+ % be parentheses in the label.
+ % The \cite command functions as follows:
+ %   \citet{key} ==>>                Jones et al. (1990)
+ %   \citet*{key} ==>>               Jones, Baker, and Smith (1990)
+ %   \citep{key} ==>>                (Jones et al., 1990)
+ %   \citep*{key} ==>>               (Jones, Baker, and Smith, 1990)
+ %   \citep[chap. 2]{key} ==>>       (Jones et al., 1990, chap. 2)
+ %   \citep[e.g.][]{key} ==>>        (e.g. Jones et al., 1990)
+ %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
+ %   \citeauthor{key} ==>>           Jones et al.
+ %   \citeauthor*{key} ==>>          Jones, Baker, and Smith
+ %   \citeyear{key} ==>>             1990
+ %---------------------------------------------------------------------
 
 ENTRY
   { address
@@ -75,7 +75,6 @@ ENTRY
     type
     volume
     year
-    doi
   }
   {}
   { label extra.label sort.label short.list }
@@ -906,15 +905,6 @@ FUNCTION {format.publisher}
   output
 }
 
-
-FUNCTION {format.doi}
-{ doi empty$
-    { "" }
-    { new.block "\doi{" doi * "}" * }
-  if$
-}
-
-
 STRINGS {oldname}
 
 FUNCTION {name.or.dash}
@@ -928,7 +918,6 @@ FUNCTION {name.or.dash}
      }
    if$
 }
-
 
 FUNCTION {article}
 { output.bibitem
@@ -950,7 +939,6 @@ FUNCTION {article}
     }
   if$
   format.journal.pages
-  format.doi output
   format.note output
   fin.entry
 }
@@ -983,7 +971,6 @@ FUNCTION {book}
     }
   if$
   format.edition output
-  format.doi output
   format.note output
   fin.entry
 }
@@ -1497,9 +1484,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\newcommand{\enquote}[1]{``#1''}"
   write$ newline$
-  "\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}"
-  write$ newline$
-  "  \providecommand{\doi}[1]{doi: #1}\fi"
+  "\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi"
   write$ newline$
 }
 

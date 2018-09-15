@@ -19,7 +19,7 @@ all: $(pdf_out) $(html_out)
 pdf: $(pdf_out)
 
 %.pdf: %.Rmd _output.yml $(preamble)
-	@make -s check
+	@$(MAKE) -s check
 	@echo "compiling to pdf file..."
 	@Rscript --vanilla -e \
 	"rmarkdown::render('$<', 'bookdown::pdf_document2')" \
@@ -29,7 +29,7 @@ pdf: $(pdf_out)
 html: $(html_out)
 
 %.html: %.Rmd _output.yml
-	@make -s check
+	@$(MAKE) -s check
 	@echo "compiling to html file..."
 	@Rscript --vanilla -e \
 	"rmarkdown::render('$<', 'bookdown::html_document2')"
